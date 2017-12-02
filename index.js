@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 import App from './src/app'
 
 let count = 0
@@ -14,12 +15,17 @@ function appendAnchorElement() {
   document.body.appendChild(extra)
 }
 
+function renderApp() {
+  render(
+    <AppContainer>
+      <App />
+    </AppContainer>,
+    document.getElementById('root')
+  )
+}
+
 appendAnchorElement()
 
-render(<App />, document.getElementById('root'))
+renderApp()
 
-if (module.hot) {
-  module.hot.accept('./src/app', () => {
-    render(<App />, document.getElementById('root'))
-  })
-}
+if (module.hot) module.hot.accept('./src/app', () => renderApp())
