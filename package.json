@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webapck -p"
+  },
   "dependencies": {
     "babel-preset-stage-0": "^6.24.1",
     "react": "^16.2.0",

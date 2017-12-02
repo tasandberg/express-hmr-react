@@ -1,6 +1,7 @@
 var webpack = require('webpack')
 var path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const { NamedModulesPlugin } = webpack
 const { CommonsChunkPlugin } = webpack.optimize
 
 module.exports = {
@@ -10,6 +11,7 @@ module.exports = {
     vendor: ['react', 'react-dom']
   },
   plugins: [
+    new NamedModulesPlugin(),
     new HTMLWebpackPlugin({ title: 'Bbsteps Yall' }),
     new CommonsChunkPlugin({ name: 'vendor', minChunks: Infinity })
   ],
