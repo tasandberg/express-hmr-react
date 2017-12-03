@@ -7,13 +7,11 @@ const { CommonsChunkPlugin } = webpack.optimize
 module.exports = {
   devtool: 'inline-cheap-source-map',
   entry: {
-    reactHot: 'react-hot-loader/patch',
     app: path.resolve(__dirname, 'index.js'),
     vendor: ['react', 'react-dom']
   },
   plugins: [
     new NamedModulesPlugin(),
-    new HTMLWebpackPlugin({ title: 'Bbsteps Yall' }),
     new CommonsChunkPlugin({ name: 'vendor', minChunks: Infinity })
   ],
   output: {
