@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --hot",
-    "build": "webpack -p"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "node server.js",
+    "build": "NODE_ENV=production webpack -p"
   },
   "dependencies": {
     "express": "^4.16.2",

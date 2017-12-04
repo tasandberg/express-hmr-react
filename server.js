@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
 
-if (!process.env.NODE_ENV !== 'production') {
-  debugger
+if (process.env.NODE_ENV !== 'production') {
   require('./dev-middleware')(app)
 } else {
-  app.use(express.static('assets'))
+  app.use('/assets', express.static('dist'))
 }
 
 app.get('/', function(req, res) {

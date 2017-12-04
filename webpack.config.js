@@ -1,16 +1,15 @@
 var webpack = require('webpack')
 var path = require('path')
+const isProduction = process.env.NODE_ENV === 'production'
 // const { NamedModulesPlugin } = webpack
 // const { CommonsChunkPlugin } = webpack.optimize
 
-module.exports = {
+const config = {
   entry: [
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './index.js',
+    './src/index.js',
   ],
   output: {
-    path: path.join(__dirname, 'assets'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/assets/',
   },
@@ -27,3 +26,11 @@ module.exports = {
     ]
   }
 };
+
+if (!isProduction) {
+  // Do dev stuff
+  config.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000')
+  config.entry.unshift('react-hot-loader/patch')
+}
+
+module.exports = config
