@@ -1,13 +1,35 @@
-var express = require('express')
-var morgan = require('morgan')
-var htmlString = require('./src/template')
+const express = require('express');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config.js');
+const app = express();
 
-var app = express()
+const compiler = webpack(webpackConfig);
 
-app.use(morgan('dev'))
-app.use('/', express.static('./dist'))
-app.get('/', (req, res) => {
-  res.send(htmlString())
-})
+app.use(webpackDevMiddleware(compiler, {
+  hot: true,
+  filename: 'bundle.js',
+  publicPath: '/assets/',
+  stats: {
+    colors: true,
+  },
+  historyApiFallback: true,
+}));
 
-app.listen(3000, () => console.log('Express Server listening on port 3000'))
+app.use(webpackHotMiddleware(compiler, {
+  log: console.log,
+  path: '/__webpack_hmr',
+  heartbeat: 10 * 1000,
+}));
+
+app.get('/', function(req, res) {
+  res.send('<body><div id="root">Hello World</div><script src=\'assets/bundle.js\'></script></body>');
+});
+
+const server = app.listen(3000, function() {
+  const host = server.address().address;
+  const port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
+});

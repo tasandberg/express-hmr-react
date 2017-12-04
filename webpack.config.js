@@ -1,30 +1,29 @@
 var webpack = require('webpack')
 var path = require('path')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const { NamedModulesPlugin } = webpack
-const { CommonsChunkPlugin } = webpack.optimize
+// const { NamedModulesPlugin } = webpack
+// const { CommonsChunkPlugin } = webpack.optimize
 
 module.exports = {
-  devtool: 'inline-cheap-source-map',
-  entry: {
-    app: path.resolve(__dirname, 'index.js'),
-    vendor: ['react', 'react-dom']
-  },
-  plugins: [
-    new NamedModulesPlugin(),
-    new CommonsChunkPlugin({ name: 'vendor', minChunks: Infinity })
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+    './index.js',
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+    path: path.join(__dirname, 'www'),
+    filename: 'bundle.js',
+    publicPath: '/assets/',
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  ],
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         use: 'babel-loader'
       }
     ]
   }
-}
+};
