@@ -7,7 +7,6 @@ export default function(appString) {
         <title>Bbsteps Yall</title>
       </head>
       <body>
-        'uhh'
         <div id="root">${appString}</div>
         <script type="text/javascript" src="assets/vendor.js"></script>
         <script type="text/javascript" src="assets/app.js"></script>
