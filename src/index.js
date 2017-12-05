@@ -1,10 +1,10 @@
 import React from 'react'
-import { render } from 'react-dom'
+import { hydrate } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import App from './app'
 
 function renderApp() {
-  render(
+  hydrate(
     <AppContainer>
       <App />
     </AppContainer>,

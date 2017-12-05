@@ -13,7 +13,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.get('/', function(req, res) {
-  res.send('<body><div id="root">Hello World?!</div><script src=\'assets/bundle.js\'></script></body>')
+  const appString = renderToString(<App />)
+  res.send(`<body><div id="root">${appString}</div><script src=\'assets/bundle.js\'></script></body>`)
 })
 
 app.listen(PORT, () => `Express Server listening on ${PORT}`)

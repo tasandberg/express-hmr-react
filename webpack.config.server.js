@@ -19,7 +19,8 @@ module.exports = {
   },
   plugins: [
     new StartServerPlugin({
-      name: 'server.js'
+      name: 'server.js',
+      nodeArg: '--inspect'
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
