@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --config webpack.config.server.js",
-    "dev": "node server.js",
-    "build": "NODE_ENV=production webpack -p"
+    "dev": "webpack --config webpack.config.server.js",
+    "build": "NODE_ENV=production webpack -p --config webpack.config.server.js && NODE_ENV=production webpack -p --config webpack.config.client.js",
+    "start": "rm -rf dist && yarn build && NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
     "express": "^4.16.2",
