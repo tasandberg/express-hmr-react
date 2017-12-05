@@ -1,4 +1,4 @@
-function htmlPage() {
+export default function(appString) {
   return `
     <!DOCTYPE html>
     <html>
@@ -7,13 +7,11 @@ function htmlPage() {
         <title>Bbsteps Yall</title>
       </head>
       <body>
-        <div id="root"></div>
-        <script type="text/javascript" src="vendor.bundle.js"></script>
-        <script type="text/javascript" src="reactHot.bundle.js"></script>
-        <script type="text/javascript" src="app.bundle.js"></script>
+        'uhh'
+        <div id="root">${appString}</div>
+        <script type="text/javascript" src="assets/vendor.js"></script>
+        <script type="text/javascript" src="assets/app.js"></script>
       </body>
     </html>
   `
 }
-
-module.exports = htmlPage

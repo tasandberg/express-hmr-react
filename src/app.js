@@ -17,8 +17,6 @@ export default class App extends Component {
       <h1>{this.state.count}</h1>
       <button onClick={() => this.changeCount(1)}>Up</button>
       <button onClick={() => this.changeCount(-1)}>Deeeyoown</button>
-      <hr />
-      <Counter />
     </div>
   )
 }

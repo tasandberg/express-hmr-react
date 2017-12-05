@@ -5,12 +5,13 @@ const isProduction = process.env.NODE_ENV === 'production'
 // const { CommonsChunkPlugin } = webpack.optimize
 
 const config = {
-  entry: [
-    './src/index.js',
-  ],
+  entry: {
+    app: ['./src/index.js'],
+    vendor: ['react', 'react-dom']
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/assets/',
   },
   plugins: [
@@ -29,8 +30,8 @@ const config = {
 
 if (!isProduction) {
   // Do dev stuff
-  config.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000')
-  config.entry.unshift('react-hot-loader/patch')
+  config.entry.app.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000')
+  config.entry.app.unshift('react-hot-loader/patch')
 }
 
 module.exports = config

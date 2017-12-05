@@ -1,10 +1,11 @@
-module.exports = function (app) {
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
-  const webpack = require('webpack');
-  const webpackConfig = require('./webpack.config.js');
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import webpack from 'webpack'
+import webpackConfig from '../webpack.config.client.js'
 
-  const compiler = webpack(webpackConfig);
+const compiler = webpack(webpackConfig);
+
+export default function (app) {
   console.log('Development: Applying webpackDevMiddleware')
   app.use(webpackDevMiddleware(compiler, {
     hot: true,
