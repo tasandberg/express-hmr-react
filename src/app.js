@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Counter from './counter'
+import './style/main.scss'
 
 export default class App extends Component {
   constructor() {

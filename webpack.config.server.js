@@ -2,8 +2,14 @@ const webpack = require('webpack')
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const StartServerPlugin = require('start-server-webpack-plugin')
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
+
+const extractSass = new ExtractTextPlugin({
+    filename: "style.css",
+    publicPath: '/assets/',
+    disable: process.env.NODE_ENV === "development"
+});
 
 const config = {
   entry: {
@@ -22,16 +28,21 @@ const config = {
       },
       {
         test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' }
-        ]
+        use: extractSass.extract({
+          use: [{
+              loader: "css-loader"
+          }, {
+              loader: "sass-loader"
+          }],
+          // use style-loader in development
+          fallback: "style-loader"
+        })
       }
     ]
   },
   plugins: [
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    extractSass 
   ],
   output: {
     path: path.join(__dirname, "dist"),
