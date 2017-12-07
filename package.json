@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack --config webpack.config.server.js",
-    "build": "NODE_ENV=production webpack -p --config webpack.config.server.js && NODE_ENV=production webpack -p --config webpack.config.client.js",
-    "start": "rm -rf dist && yarn build && NODE_ENV=production node dist/server.js"
+    "build": "rm -rf dist && NODE_ENV=production webpack -p --config webpack.config.server.js && NODE_ENV=production webpack -p --config webpack.config.client.js",
+    "start": "NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
     "express": "^4.16.2",
