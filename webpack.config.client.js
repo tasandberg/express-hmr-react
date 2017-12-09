@@ -1,12 +1,10 @@
 var webpack = require('webpack')
 var path = require('path')
 const isProduction = process.env.NODE_ENV === 'production'
-// const { NamedModulesPlugin } = webpack
-const { CommonsChunkPlugin } = webpack.optimize
 
 const config = {
   entry: {
-    app: ['./src/index.js'],
+    app: ['./client/index.js'],
     vendor: [
       'react',
       'react-dom'
@@ -18,6 +16,7 @@ const config = {
     publicPath: '/assets/',
   },
   plugins: [
+    new webpack.NamedModulesPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', minChunks: Infinity }),
     new webpack.NoEmitOnErrorsPlugin(),
 

@@ -3,8 +3,8 @@ import morgan from 'morgan'
 import React from 'react'
 import devMiddleware from './dev-middleware'
 import { renderToString } from 'react-dom/server'
-import App from '../src/app.js'
-import htmlPage from '../src/template.js'
+import App from '../client/app.js'
+import htmlPage from '../client/template.js'
 
 const isProduction = process.env.NODE_ENV === 'production'
 const app = express()
@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
   const initialPage = htmlPage(
     renderToString(<App />)
   )
-  
+
   res.send(initialPage)
 })
 
